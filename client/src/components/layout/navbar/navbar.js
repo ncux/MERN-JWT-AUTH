@@ -1,0 +1,56 @@
+import React, { useContext, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
+export const Navbar = () => {
+
+    const isAuthedLinks = (
+        <Fragment>
+            <li>
+
+            </li>
+            <li>
+
+            </li>
+        </Fragment>
+    );
+
+    const isNotAuthedLinks = (
+        <Fragment>
+            <li>
+                <Link to="/login">Login</Link>
+            </li>
+            <li>
+                <Link to="/register">Register</Link>
+            </li>
+        </Fragment>
+    );
+
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link className="navbar-brand" to="/">MERN JWT Auth</Link>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="ml-auto collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/about">About</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/login">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/register">Register</Link>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    );
+};
+
+
+
