@@ -12,7 +12,7 @@ export const config = {
     // non-global axios setup
     authAxios: axios.create({
         baseURL: AUTH_URL,
-        headers: { "x-auth-token": localStorage.getItem('auth_token') }
+        headers: { "x-auth-token": localStorage.getItem('auth_token') || '' }
     }),
 
     // global axios setup

@@ -64,7 +64,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, config.get('jwtSecret'));
 
-    res.json({ token, user: { id: user._id, displayName: user.displayName } });
+    res.json({ token, user: { email: user.email, displayName: user.displayName } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -79,7 +79,7 @@ router.delete("/delete", auth, async (req, res) => {
   }
 });
 
-// check if the token is valid
+// checks if the there's a token in the request
 router.post("/auth", async (req, res) => {
   try {
     const token = req.header("x-auth-token");
@@ -97,10 +97,10 @@ router.post("/auth", async (req, res) => {
   }
 });
 
-// get the user
+// get the user; auth middleware verifies the token
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
-  res.json({ displayName: user.displayName, id: user._id });
+  res.json({ displayName: user.displayName, email: user.email });
 });
 
 module.exports = router;

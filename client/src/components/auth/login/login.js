@@ -1,6 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../../context/auth/context";
+import { Loading } from "../../layout/loading/loading";
 
 export const Login = props => {
+
+    const { login, loading, isAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         email: '',
@@ -13,11 +19,20 @@ export const Login = props => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
         if(!email || !password) return;
-        console.log(user);
+        await login(user);
+        navigate(`/home`);
     };
+
+    useEffect(() => {
+        if(isAuthenticated) {
+            navigate(`/home`);
+        }
+    }, [isAuthenticated]);
+
+    if(loading) return (<Loading />);
 
     return (
         <form onSubmit={ onSubmit }>
