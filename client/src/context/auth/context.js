@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, createContext } from 'react';
 import axios from 'axios';
 import { Reducer } from "./reducer";
-import { SET_LOADING, LOGIN, SET_USER_DATA } from "../types";
+import { SET_LOADING, SET_USER_DATA } from "../types";
 import { config } from "../../config/axios";
 
 const { httpHeaders, AUTH_URL, authAxios } = config;
