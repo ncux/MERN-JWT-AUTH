@@ -13,5 +13,5 @@ app.use(cors());
 // set up routes
 app.use("/users", require("./routes/userRouter"));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`The server has started on port: ${PORT}`));
