@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from 'js-cookie'
 
-const AUTH_URL = `http://localhost:5000/users/`;
+const AUTH_URL = `http://localhost:4000/users/`;
 
 export const config = {
 

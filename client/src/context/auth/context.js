@@ -21,19 +21,18 @@ export const AuthState = ({ children }) => {
     const setLoading = () => dispatch({ type: SET_LOADING });
 
     const checkAuthStatus = async () => {
-        setLoading();
         // checks is there's a token - returns true or false as data
-        const { data } = await authAxios.post('/auth', null, httpHeaders);
+        const { data } = await authAxios.post('auth', null, httpHeaders);
         if(data) {
             // checks if the token is valid and returns the user's data
-            const { data } = await authAxios.get('/', httpHeaders);
+            const { data } = await authAxios.get('', httpHeaders);
             return dispatch({ type: SET_USER_DATA, payload: data });
         }
     };
 
     const login = async userCredentials => {
         setLoading();
-        const { data } = await axios.post(`${AUTH_URL}/login`, JSON.stringify(userCredentials), httpHeaders);
+        const { data } = await axios.post(`${AUTH_URL}login`, JSON.stringify(userCredentials), httpHeaders);
         const { token, user } = data;
         localStorage.setItem('auth_token', token);
         return dispatch({ type: SET_USER_DATA, payload: user });
