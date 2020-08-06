@@ -1,6 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../../context/auth/context";
 
 export const Registration = props => {
+
+    const { isAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [user, setUser] = useState({
         displayName: '',
@@ -18,6 +23,12 @@ export const Registration = props => {
       if(!email || !password || !passwordCheck || !displayName) return;
       console.log(user);
     };
+
+    useEffect(() => {
+        if(isAuthenticated) {
+            navigate(`/home`);
+        }
+    }, [])
 
     return (
         <form onSubmit={ onSubmit }>

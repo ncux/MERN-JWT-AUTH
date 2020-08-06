@@ -30,7 +30,7 @@ export const Login = props => {
         if(isAuthenticated) {
             navigate(`/home`);
         }
-    }, [isAuthenticated]);
+    }, []);
 
     if(loading) return (<Loading />);
 
